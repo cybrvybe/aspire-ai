@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  web:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+  db:
+    image: "postgres:13-alpine"
+    environment:
+      POSTGRES_USER: provise
+      POSTGRES_PASSWORD: provise
+      POSTGRES_DB: provise_db
+    volumes:
+      - "./data/db:/var/lib/postgresql/data"
+    ports:
+      - "5432:5432"
